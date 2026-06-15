@@ -154,5 +154,138 @@
       "rating": 5,
       "color": "violet"
     }
+  ],
+  "logos": [
+    { "label": "☕ Brewhouse" },
+    { "label": "✂ Sharp & Co." },
+    { "label": "🔧 PipeWorks" },
+    { "label": "🌿 GreenLeaf Spa" },
+    { "label": "🦷 BrightSmile" },
+    { "label": "🍕 Nonna's" },
+    { "label": "🐾 Pawsome Vet" },
+    { "label": "🏋 IronYard Gym" }
+  ],
+  "workStats": [
+    { "value": "120+", "label": "sites launched", "color": "blue" },
+    { "value": "4.9★", "label": "client rating", "color": "coral" },
+    { "value": "2.3×", "label": "avg. lead growth", "color": "lime" },
+    { "value": "3 wk", "label": "avg. delivery", "color": "violet" }
+  ],
+  "cases": [
+    {
+      "title": "Brewhouse Café",
+      "description": "The weekend lines were great for vibes, terrible for revenue. We built a warm, mouth-watering site with built-in pre-ordering, then optimized it to show up first for \"coffee near me.\"",
+      "tags": ["Website", "Online ordering", "Local SEO"],
+      "phLabel": "Brewhouse Café — full site",
+      "color": "blue",
+      "results": [
+        { "value": "+142%", "label": "online orders" },
+        { "value": "#1", "label": "local \"coffee\" rank" },
+        { "value": "2.1s", "label": "load time" }
+      ]
+    },
+    {
+      "title": "Sharp & Co. Barbers",
+      "description": "A booking-first redesign made it effortless to grab the next chair, while a tightly-targeted local ad campaign filled the quiet midweek slots that used to sit empty.",
+      "tags": ["Website", "Booking system", "Google Ads"],
+      "phLabel": "Sharp & Co. — full site",
+      "color": "coral",
+      "results": [
+        { "value": "3.5×", "label": "weekly bookings" },
+        { "value": "−40%", "label": "no-shows" },
+        { "value": "4.2×", "label": "return on ad spend" }
+      ]
+    },
+    {
+      "title": "GreenLeaf Day Spa",
+      "description": "We rebranded around calm and built a serene, mobile-friendly site that makes booking a treatment feel like the first step of the massage. It now ranks #1 and books weeks ahead.",
+      "tags": ["Website", "Branding", "Local SEO"],
+      "phLabel": "GreenLeaf Spa — full site",
+      "color": "lime",
+      "results": [
+        { "value": "#1", "label": "\"day spa\" rank" },
+        { "value": "+96%", "label": "online bookings" },
+        { "value": "3 wk", "label": "booked ahead" }
+      ]
+    },
+    {
+      "title": "PipeWorks Plumbing",
+      "description": "Emergencies don't wait, so we built a fast, click-to-call site that loads instantly on a phone at 2am — paired with always-on ads for the urgent searches that matter most.",
+      "tags": ["Website", "Google Ads", "Care plan"],
+      "phLabel": "PipeWorks — full site",
+      "color": "violet",
+      "results": [
+        { "value": "+88%", "label": "qualified calls" },
+        { "value": "0.9s", "label": "mobile load" },
+        { "value": "24/7", "label": "lead capture" }
+      ]
+    }
+  ],
+  "pricingPage": [
+    {
+      "name": "Launch",
+      "tagline": "Get online fast with a polished one-pager that converts.",
+      "price": "1,200",
+      "per": "",
+      "terms": "one-time · ~2 week delivery",
+      "features": [
+        "1-page custom website",
+        "Mobile-first & lightning fast",
+        "Contact form & click-to-call",
+        "Google Business Profile setup",
+        "Basic on-page SEO"
+      ],
+      "cta": "Choose Launch",
+      "popular": false
+    },
+    {
+      "name": "Grow",
+      "tagline": "A full website plus the SEO foundation to get you found.",
+      "price": "3,500",
+      "per": "",
+      "terms": "one-time · ~4 week delivery",
+      "features": [
+        "Up to 6 custom pages",
+        "Local SEO & on-page setup",
+        "Booking or online ordering",
+        "Brand refresh & copywriting",
+        "Photo sourcing & setup",
+        "30 days post-launch support"
+      ],
+      "cta": "Choose Grow",
+      "popular": true
+    },
+    {
+      "name": "Scale",
+      "tagline": "Website plus done-for-you marketing, month after month.",
+      "price": "900",
+      "per": "/mo",
+      "terms": "+ one-time build · cancel anytime",
+      "features": [
+        "Everything in Grow",
+        "Managed Google & social ads",
+        "Ongoing SEO & content",
+        "Monthly strategy & reporting call",
+        "Priority care & unlimited tweaks"
+      ],
+      "cta": "Choose Scale",
+      "popular": false
+    }
+  ],
+  "addons": [
+    { "icon": "◎", "color": "coral", "title": "Logo & brand kit", "description": "A fresh logo, color palette, and fonts you can use everywhere.", "price": "from $450" },
+    { "icon": "⌕", "color": "lime", "title": "SEO boost", "description": "Deeper keyword research, content, and local listing cleanup.", "price": "from $350/mo" },
+    { "icon": "✉", "color": "violet", "title": "Email marketing", "description": "Newsletter setup and automated flows that bring people back.", "price": "from $300/mo" },
+    { "icon": "▤", "color": "blue", "title": "Extra pages", "description": "Need more than the package includes? Add pages anytime.", "price": "$220 each" },
+    { "icon": "▣", "color": "yellow", "title": "Photography", "description": "A local pro to capture your space, products, and team.", "price": "from $500" },
+    { "icon": "⟳", "color": "coral", "title": "Care plan", "description": "Hosting, backups, updates, and edits handled for you.", "price": "from $79/mo" }
+  ],
+  "faqs": [
+    { "question": "How long does a website take?", "answer": "Most Launch sites go live in about 2 weeks and Grow sites in 3–4 weeks. The biggest factor is how quickly we get your content and feedback — we'll keep things moving on our end." },
+    { "question": "Do I need to write all the content?", "answer": "Nope. Copywriting is included in the Grow package, and we can help with Launch too. We'll interview you, then write in your voice — you just review and approve." },
+    { "question": "What if I already have a website?", "answer": "Great — a redesign is often faster. We'll audit what's working, keep what you love, and rebuild the rest on a faster, easier-to-update foundation." },
+    { "question": "Will I be able to update it myself?", "answer": "Yes. We build on tools that are easy to edit, and we hand over a short walkthrough video. Prefer to never touch it? Our care plan handles edits for you." },
+    { "question": "Are there any hidden fees?", "answer": "None. You get a fixed quote before we start, and the only ongoing costs are ones you choose — like hosting, a care plan, or monthly marketing. We'll spell it all out up front." },
+    { "question": "Do you work with businesses outside my area?", "answer": "Absolutely. We work with small businesses everywhere and run the whole process over calls, email, and screen-share — wherever you are." }
   ]
 }

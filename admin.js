@@ -44,6 +44,73 @@ const SCHEMAS = {
       { key: 'cta', label: 'Button text', type: 'text' },
       { key: 'popular', label: 'Mark as "Most popular"', type: 'checkbox' }
     ]
+  },
+  logos: {
+    label: 'Logo strip',
+    itemLabel: 'Logo',
+    blank: { label: '' },
+    fields: [
+      { key: 'label', label: 'Label', type: 'text', hint: 'emoji + name, e.g. ☕ Brewhouse' }
+    ]
+  },
+  workStats: {
+    label: 'Work page · stats',
+    itemLabel: 'Stat',
+    blank: { value: '', label: '', color: 'blue' },
+    fields: [
+      { key: 'value', label: 'Figure', type: 'text', hint: 'e.g. 120+ or 4.9★' },
+      { key: 'label', label: 'Label', type: 'text' },
+      { key: 'color', label: 'Color', type: 'select', options: ['blue', 'coral', 'lime', 'violet'] }
+    ]
+  },
+  cases: {
+    label: 'Work page · case studies',
+    itemLabel: 'Case study',
+    blank: { title: '', description: '', tags: [], phLabel: '', color: 'blue', results: [] },
+    fields: [
+      { key: 'title', label: 'Project name', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'tags', label: 'Tags', type: 'tags', hint: 'comma-separated' },
+      { key: 'phLabel', label: 'Image placeholder label', type: 'text' },
+      { key: 'color', label: 'Color', type: 'select', options: ['blue', 'coral', 'lime', 'violet'] },
+      { key: 'results', label: 'Results', type: 'pairs', hint: 'one per line as: figure | label  (e.g. +142% | online orders)' }
+    ]
+  },
+  pricingPage: {
+    label: 'Pricing page · tiers',
+    itemLabel: 'Tier',
+    blank: { name: '', tagline: '', price: '', per: '', terms: '', features: [], cta: 'Choose', popular: false },
+    fields: [
+      { key: 'name', label: 'Tier name', type: 'text' },
+      { key: 'tagline', label: 'Tagline', type: 'textarea' },
+      { key: 'price', label: 'Price', type: 'text', hint: 'number only, no $' },
+      { key: 'per', label: 'Per (optional)', type: 'text', hint: 'e.g. /mo' },
+      { key: 'terms', label: 'Terms line', type: 'text' },
+      { key: 'features', label: 'Features', type: 'list', hint: 'one per line' },
+      { key: 'cta', label: 'Button text', type: 'text' },
+      { key: 'popular', label: 'Mark as "Most popular"', type: 'checkbox' }
+    ]
+  },
+  addons: {
+    label: 'Pricing page · add-ons',
+    itemLabel: 'Add-on',
+    blank: { icon: '◎', color: 'blue', title: '', description: '', price: '' },
+    fields: [
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'icon', label: 'Icon (a symbol)', type: 'text' },
+      { key: 'color', label: 'Icon color', type: 'select', options: ['blue', 'coral', 'lime', 'violet', 'yellow'] },
+      { key: 'price', label: 'Price', type: 'text', hint: 'e.g. from $450' }
+    ]
+  },
+  faqs: {
+    label: 'Pricing page · FAQ',
+    itemLabel: 'Question',
+    blank: { question: '', answer: '' },
+    fields: [
+      { key: 'question', label: 'Question', type: 'text' },
+      { key: 'answer', label: 'Answer', type: 'textarea' }
+    ]
   }
 };
 
@@ -78,6 +145,10 @@ function fieldControl(section, idx, field, value) {
   }
   if (field.type === 'list') {
     const text = Array.isArray(value) ? value.join('\n') : '';
+    return `<label for="${id}">${esc(field.label)}${hint}</label><textarea ${attrs}>${esc(text)}</textarea>`;
+  }
+  if (field.type === 'pairs') {
+    const text = Array.isArray(value) ? value.map((p) => `${p.value} | ${p.label}`).join('\n') : '';
     return `<label for="${id}">${esc(field.label)}${hint}</label><textarea ${attrs}>${esc(text)}</textarea>`;
   }
   if (field.type === 'tags') {
@@ -210,6 +281,12 @@ panelsEl.addEventListener('input', (e) => {
   else if (type === 'number') val = Number(el.value);
   else if (type === 'tags') val = el.value.split(',').map((s) => s.trim()).filter(Boolean);
   else if (type === 'list') val = el.value.split('\n').map((s) => s.trim()).filter(Boolean);
+  else if (type === 'pairs') {
+    val = el.value.split('\n').map((line) => {
+      const [v, ...rest] = line.split('|');
+      return { value: (v || '').trim(), label: rest.join('|').trim() };
+    }).filter((p) => p.value || p.label);
+  }
   else val = el.value;
   data[section][idx][key] = val;
 });

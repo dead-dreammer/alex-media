@@ -38,6 +38,31 @@
     lime: 'oklch(0.55 0.14 150)', yellow: 'oklch(0.6 0.13 80)'
   };
 
+  // case-study media on work.html: blue uses the default placeholder (no style).
+  const CASE_COLORS = {
+    blue: { ph: '', label: '', result: 'color:var(--blue);' },
+    coral: {
+      ph: 'background-color:var(--coral-soft);background-image:repeating-linear-gradient(135deg, oklch(0.72 0.16 25 / 0.1) 0 10px, transparent 10px 20px);',
+      label: 'color:var(--coral);border-color:oklch(0.72 0.16 25 / 0.4);',
+      result: 'color:var(--coral);'
+    },
+    lime: {
+      ph: 'background-color:var(--lime-soft);background-image:repeating-linear-gradient(135deg, oklch(0.8 0.16 150 / 0.12) 0 10px, transparent 10px 20px);',
+      label: 'color:oklch(0.5 0.14 150);border-color:oklch(0.8 0.16 150 / 0.5);',
+      result: 'color:oklch(0.5 0.14 150);'
+    },
+    violet: {
+      ph: 'background-color:var(--violet-soft);background-image:repeating-linear-gradient(135deg, oklch(0.64 0.18 300 / 0.1) 0 10px, transparent 10px 20px);',
+      label: 'color:var(--violet);border-color:oklch(0.64 0.18 300 / 0.4);',
+      result: 'color:var(--violet);'
+    }
+  };
+
+  const STAT_COLORS = {
+    blue: 'var(--blue)', coral: 'var(--coral)',
+    lime: 'oklch(0.5 0.14 150)', violet: 'var(--violet)'
+  };
+
   const initials = (name) =>
     String(name || '')
       .trim()
@@ -121,6 +146,60 @@
     }).join('');
   }
 
+  function renderLogos(items) {
+    const run = items.map((l) => `<span>${esc(l.label)}</span>`).join('');
+    return run + run; // duplicated for the seamless scroll animation
+  }
+
+  function renderWorkStats(items) {
+    return items.map((s) => {
+      const color = STAT_COLORS[s.color] || STAT_COLORS.blue;
+      return `<div class="hs"><b style="color:${color};">${esc(s.value)}</b><small>${esc(s.label)}</small></div>`;
+    }).join('');
+  }
+
+  function renderCases(items) {
+    return items.map((c) => {
+      const col = CASE_COLORS[c.color] || CASE_COLORS.blue;
+      const tags = (c.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('');
+      const phStyle = col.ph ? ` style="${col.ph}"` : '';
+      const labelStyle = col.label ? ` style="${col.label}"` : '';
+      const results = (c.results || []).map((r) =>
+        `<div class="cr"><b style="${col.result}">${esc(r.value)}</b><small>${esc(r.label)}</small></div>`
+      ).join('');
+      return `<article class="case">
+        <div class="case-media"><div class="ph"${phStyle}><span class="ph-label"${labelStyle}>${esc(c.phLabel)}</span></div></div>
+        <div>
+          <div class="case-tags">${tags}</div>
+          <h2>${esc(c.title)}</h2>
+          <p>${esc(c.description)}</p>
+          <div class="case-results">${results}</div>
+          <a href="index.html#contact" class="btn btn-ghost">Start a project like this <span class="arrow">↗</span></a>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  function renderAddons(items) {
+    return items.map((a) =>
+      `<div class="card addon">
+        <div class="ai i-${esc(a.color)}">${esc(a.icon)}</div>
+        <h4>${esc(a.title)}</h4>
+        <p>${esc(a.description)}</p>
+        <div class="price">${esc(a.price)}</div>
+      </div>`
+    ).join('');
+  }
+
+  function renderFaqs(items) {
+    return items.map((f) =>
+      `<div class="faq-item">
+        <button class="faq-q">${esc(f.question)}<span class="ic">+</span></button>
+        <div class="faq-a"><p>${esc(f.answer)}</p></div>
+      </div>`
+    ).join('');
+  }
+
   function fill(id, html) {
     const el = document.getElementById(id);
     if (el && html) el.innerHTML = html;
@@ -135,11 +214,20 @@
         if (Array.isArray(data.work)) fill('workGrid', renderWork(data.work));
         if (Array.isArray(data.pricing)) fill('priceGrid', renderPricing(data.pricing));
         if (Array.isArray(data.reviews)) fill('testiGrid', renderReviews(data.reviews));
+        if (Array.isArray(data.logos)) fill('marquee', renderLogos(data.logos));
+        if (Array.isArray(data.workStats)) fill('workStats', renderWorkStats(data.workStats));
+        if (Array.isArray(data.cases)) fill('casesWrap', renderCases(data.cases));
+        if (Array.isArray(data.pricingPage)) fill('pricingPageGrid', renderPricing(data.pricingPage));
+        if (Array.isArray(data.addons)) fill('addonGrid', renderAddons(data.addons));
+        if (Array.isArray(data.faqs)) fill('faqList', renderFaqs(data.faqs));
       })
       .catch(() => { /* network/parse error — leave hardcoded markup */ });
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { renderServices, renderWork, renderPricing, renderReviews };
+    module.exports = {
+      renderServices, renderWork, renderPricing, renderReviews,
+      renderLogos, renderWorkStats, renderCases, renderAddons, renderFaqs
+    };
   }
 })();

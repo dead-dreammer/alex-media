@@ -97,7 +97,7 @@
 
 <section class="price-sec">
   <div class="wrap">
-    <div class="price-grid">
+    <div class="price-grid" id="pricingPageGrid">
       <div class="card price-card" data-reveal>
         <h3>Launch</h3>
         <p class="ptag">Get online fast with a polished one-pager that converts.</p>
@@ -153,7 +153,7 @@
       <h2>Bolt on exactly what you need</h2>
       <p>Mix and match with any package. We'll fold it into one clear quote.</p>
     </div>
-    <div class="addon-grid">
+    <div class="addon-grid" id="addonGrid">
       <div class="card addon" data-reveal>
         <div class="ai i-coral">◎</div>
         <h4>Logo &amp; brand kit</h4>
@@ -212,7 +212,7 @@
       <span class="eyebrow">FAQ</span>
       <h2>Questions, answered</h2>
     </div>
-    <div class="faq-list">
+    <div class="faq-list" id="faqList">
       <div class="faq-item" data-reveal>
         <button class="faq-q">How long does a website take?<span class="ic">+</span></button>
         <div class="faq-a"><p>Most Launch sites go live in about 2 weeks and Grow sites in 3–4 weeks. The biggest factor is how quickly we get your content and feedback — we'll keep things moving on our end.</p></div>
@@ -282,15 +282,17 @@
   </div>
 </footer>
 
+<script src="render.js"></script>
 <script src="site.js"></script>
 <script>
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.closest('.faq-item');
-      const a = item.querySelector('.faq-a');
-      const open = item.classList.toggle('open');
-      a.style.maxHeight = open ? a.scrollHeight + 'px' : '0';
-    });
+  // delegated so it also works for FAQ items rendered from the database
+  document.addEventListener('click', (e) => {
+    const q = e.target.closest('.faq-q');
+    if (!q) return;
+    const item = q.closest('.faq-item');
+    const a = item.querySelector('.faq-a');
+    const open = item.classList.toggle('open');
+    a.style.maxHeight = open ? a.scrollHeight + 'px' : '0';
   });
 </script>
 </body>

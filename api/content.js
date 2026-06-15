@@ -3,7 +3,7 @@
 //                             body: { section: 'services'|'work'|'pricing', items: [...] }
 const { sql, isAuthed, readJson } = require('../lib/db');
 
-const EDITABLE = ['services', 'work', 'pricing'];
+const EDITABLE = ['services', 'work', 'pricing', 'logos', 'workStats', 'cases', 'pricingPage', 'addons', 'faqs'];
 
 module.exports = async (req, res) => {
   try {
@@ -14,9 +14,10 @@ module.exports = async (req, res) => {
         SELECT name, business, text, rating, color
         FROM reviews WHERE approved = true ORDER BY created_at DESC`;
 
-      const out = { services: [], work: [], pricing: [], reviews: [] };
+      const out = {};
+      for (const s of EDITABLE) out[s] = [];
       for (const r of rows) {
-        if (out[r.section]) out[r.section].push(r.data);
+        (out[r.section] || (out[r.section] = [])).push(r.data);
       }
       out.reviews = approvedReviews;
       return res.status(200).json(out);
