@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Alex Media</title>
+  <style>
+    :root { --line:#e2e5ea; --muted:#5b6472; --blue:#2563eb; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; color: #1a1f29; background: #f7f8fa; }
+    header { background: #fff; border-bottom: 1px solid var(--line); padding: 16px 24px; position: sticky; top: 0; z-index: 10; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    header h1 { font-size: 18px; margin: 0; flex: 1; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 24px; }
+    .secret-row { display: flex; gap: 8px; align-items: center; }
+    .secret-row input { padding: 8px; border: 1px solid var(--line); border-radius: 6px; width: 220px; }
+    .tabs { display: flex; gap: 6px; margin: 18px 0 22px; flex-wrap: wrap; }
+    .tab { padding: 9px 16px; border: 1px solid var(--line); background: #fff; border-radius: 999px; cursor: pointer; font-size: 14px; }
+    .tab.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+    .item-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .item-head strong { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    label { display: block; font-size: 13px; font-weight: 600; margin: 10px 0 4px; }
+    input, textarea, select { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; }
+    textarea { resize: vertical; min-height: 60px; }
+    .field-hint { font-size: 12px; color: var(--muted); font-weight: 400; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .checkbox-field { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+    .checkbox-field input { width: auto; }
+    button { font: inherit; cursor: pointer; }
+    .btn { padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+    .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn-danger { color: #b91c1c; border-color: #f0c2c2; background: #fff; padding: 5px 10px; font-size: 13px; }
+    .btn-add { border-style: dashed; width: 100%; padding: 12px; color: var(--muted); }
+    .toolbar { position: sticky; bottom: 0; background: #fff; border-top: 1px solid var(--line); padding: 14px 24px; display: flex; gap: 12px; align-items: center; }
+    #out { font-size: 13px; flex: 1; white-space: pre-wrap; }
+    .small { font-size: 13px; color: var(--muted); }
+    .item.pending { border-color: #f0c98a; background: #fffaf0; }
+    .badge { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 3px 8px; border-radius: 999px; }
+    .badge.pending { background: #fde9c8; color: #92590b; }
+    .badge.live { background: #dcfce7; color: #15803d; }
+    .review-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .btn-approve { background: #15803d; color: #fff; border-color: #15803d; padding: 6px 12px; font-size: 13px; border-radius: 8px; }
+    .btn-sm { padding: 6px 12px; font-size: 13px; border-radius: 8px; }
+    .review-text { margin: 8px 0; }
+    .stars-sm { color: #eab308; letter-spacing: 2px; }
+    .add-review { background: #fff; border: 1px dashed var(--line); border-radius: 10px; padding: 16px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin — Edit Site Content</h1>
+    <div class="secret-row">
+      <input id="adminSecret" type="password" placeholder="Paste ADMIN_SECRET" />
+      <button class="btn" id="refreshBtn">Reload</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <p class="small">Edits here are saved to the database and appear on the live site immediately. Services, Work &amp; Pricing changes save when you click <strong>Save changes</strong>. Review approvals and deletions save instantly.</p>
+
+    <div class="tabs" id="tabs"></div>
+
+    <div id="panels"></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn btn-primary" id="saveBtn">Save changes</button>
+    <span id="out" class="small">Loading…</span>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

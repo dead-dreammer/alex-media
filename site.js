@@ -77,3 +77,36 @@ if (form) {
     el.addEventListener('input', () => el.closest('.field').classList.remove('err'));
   });
 }
+
+// public "leave a review" form -> /api/reviews (saved as pending)
+const reviewToggle = document.getElementById('reviewToggle');
+const reviewForm = document.getElementById('reviewForm');
+if (reviewToggle && reviewForm) {
+  reviewToggle.addEventListener('click', () => {
+    reviewForm.hidden = false;
+    reviewToggle.parentElement.style.display = 'none';
+    document.getElementById('rv-name').focus();
+  });
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const payload = {
+      name: document.getElementById('rv-name').value.trim(),
+      business: document.getElementById('rv-business').value.trim(),
+      text: document.getElementById('rv-text').value.trim(),
+      rating: Number(document.getElementById('rv-rating').value) || 5,
+      website: document.getElementById('rv-website').value // honeypot
+    };
+    if (!payload.name || !payload.text) return;
+    const btn = reviewForm.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    try {
+      await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) { /* show success regardless — submission is best-effort */ }
+    document.getElementById('reviewFields').style.display = 'none';
+    document.getElementById('reviewSuccess').classList.add('show');
+  });
+}

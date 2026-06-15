@@ -1,0 +1,158 @@
+{
+  "services": [
+    {
+      "icon": "◐",
+      "color": "feature",
+      "title": "Website design & development",
+      "description": "Custom, mobile-first websites built to load fast, rank well, and turn visitors into bookings. No clunky templates — just sites that feel made for you.",
+      "linkText": "See examples",
+      "linkHref": "work.html"
+    },
+    {
+      "icon": "⌕",
+      "color": "lime",
+      "title": "SEO & local search",
+      "description": "Show up when neighbors search. We get you on the map — literally — for the terms that bring real customers.",
+      "linkText": "Get found",
+      "linkHref": "#contact"
+    },
+    {
+      "icon": "◎",
+      "color": "coral",
+      "title": "Google & social ads",
+      "description": "Smart campaigns that stretch every dollar and put your business in front of ready-to-buy locals.",
+      "linkText": "Run ads",
+      "linkHref": "#contact"
+    },
+    {
+      "icon": "✦",
+      "color": "violet",
+      "title": "Branding & identity",
+      "description": "Logos, colors, and a look that makes you memorable — so you stand out from the shop down the street.",
+      "linkText": "Look the part",
+      "linkHref": "#contact"
+    },
+    {
+      "icon": "◷",
+      "color": "yellow",
+      "title": "Care & analytics",
+      "description": "We keep your site fast, secure, and improving — with plain-English reports on what's actually working.",
+      "linkText": "Stay ahead",
+      "linkHref": "#contact"
+    }
+  ],
+  "work": [
+    {
+      "title": "Brewhouse Café",
+      "description": "A warm new site plus online ordering that turned weekend lines into pre-orders.",
+      "tags": ["Website", "Local SEO", "Branding"],
+      "result": "+142%",
+      "resultLabel": "online orders in 90 days",
+      "phLabel": "Brewhouse Café — site shot",
+      "color": "blue",
+      "stripe": false
+    },
+    {
+      "title": "Sharp & Co. Barbers",
+      "description": "Slick booking-first website with a campaign that kept every chair full.",
+      "tags": ["Website", "Booking", "Ads"],
+      "result": "3.5×",
+      "resultLabel": "online bookings per week",
+      "phLabel": "Sharp & Co. — site shot",
+      "color": "coral",
+      "stripe": true
+    },
+    {
+      "title": "GreenLeaf Day Spa",
+      "description": "A calming redesign that ranks #1 locally and books out weeks ahead.",
+      "tags": ["Website", "Local SEO"],
+      "result": "#1",
+      "resultLabel": "on Google for \"day spa\"",
+      "phLabel": "GreenLeaf Spa — site shot",
+      "color": "lime",
+      "stripe": true
+    },
+    {
+      "title": "PipeWorks Plumbing",
+      "description": "An emergency-ready site that turns 2am searches into morning callouts.",
+      "tags": ["Website", "Google Ads", "Care plan"],
+      "result": "+88%",
+      "resultLabel": "qualified call volume",
+      "phLabel": "PipeWorks — full site",
+      "color": "violet",
+      "stripe": true
+    }
+  ],
+  "pricing": [
+    {
+      "name": "Launch",
+      "tagline": "Get online fast with a polished one-pager that converts.",
+      "price": "1,200",
+      "per": "",
+      "terms": "one-time · ~2 week delivery",
+      "features": [
+        "1-page custom website",
+        "Mobile-first & fast",
+        "Contact & click-to-call",
+        "Google Business setup"
+      ],
+      "cta": "Choose Launch",
+      "popular": false
+    },
+    {
+      "name": "Grow",
+      "tagline": "A full website plus the SEO foundation to get you found.",
+      "price": "3,500",
+      "per": "",
+      "terms": "one-time · ~4 week delivery",
+      "features": [
+        "Up to 6 custom pages",
+        "Local SEO & on-page setup",
+        "Booking or online ordering",
+        "Brand refresh & copywriting",
+        "30 days post-launch support"
+      ],
+      "cta": "Choose Grow",
+      "popular": true
+    },
+    {
+      "name": "Scale",
+      "tagline": "Website plus done-for-you marketing, month after month.",
+      "price": "900",
+      "per": "/mo",
+      "terms": "+ build · cancel anytime",
+      "features": [
+        "Everything in Grow",
+        "Managed Google & social ads",
+        "Ongoing SEO & content",
+        "Monthly reporting call",
+        "Priority care & updates"
+      ],
+      "cta": "Choose Scale",
+      "popular": false
+    }
+  ],
+  "reviews": [
+    {
+      "text": "Our old site looked like it was from 2009. AlexMedia gave us something we're genuinely proud to share — and the phone hasn't stopped ringing since.",
+      "name": "Jenna Morales",
+      "business": "Owner, Brewhouse Café",
+      "rating": 5,
+      "color": "blue"
+    },
+    {
+      "text": "They actually understood my business, not just the website. Bookings are way up and I finally show up when people search nearby.",
+      "name": "Ryan Sharp",
+      "business": "Sharp & Co. Barbers",
+      "rating": 5,
+      "color": "coral"
+    },
+    {
+      "text": "Fast, friendly, and no confusing tech-speak. The monthly reports are so clear I always know exactly where my marketing money goes.",
+      "name": "Tara Kelly",
+      "business": "GreenLeaf Day Spa",
+      "rating": 5,
+      "color": "violet"
+    }
+  ]
+}

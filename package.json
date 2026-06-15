@@ -1,0 +1,17 @@
+{
+  "name": "alex-media",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}
