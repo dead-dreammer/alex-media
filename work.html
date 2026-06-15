@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Work — AlexMedia</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .page-hero { padding: 72px 0 56px; text-align: center; position: relative; overflow: hidden; }
+  .page-hero::before { content:""; position:absolute; top:-160px; left:50%; transform:translateX(-50%); width:680px; height:420px; background:radial-gradient(circle, oklch(0.6 0.19 252 / 0.12), transparent 65%); z-index:0; }
+  .page-hero .wrap { position: relative; z-index: 1; }
+  .page-hero h1 { font-size: clamp(38px, 5.5vw, 66px); margin-top: 18px; }
+  .page-hero p { color: var(--muted); font-size: 19px; max-width: 560px; margin: 20px auto 0; }
+  .hero-stats { display: flex; justify-content: center; gap: 48px; margin-top: 44px; flex-wrap: wrap; }
+  .hero-stats .hs b { font-family: var(--font-display); font-weight: 700; font-size: 38px; letter-spacing: -0.02em; display: block; }
+  .hero-stats .hs small { color: var(--muted); font-size: 14px; }
+
+  .cases { padding: 40px 0 90px; }
+  .case { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 44px; border-radius: var(--r-xl); margin-bottom: 32px; border: 1px solid var(--line); background: var(--surface); transition: box-shadow .3s var(--ease); }
+  .case:hover { box-shadow: var(--shadow-md); }
+  .case:nth-child(even) .case-media { order: 2; }
+  .case-media .ph { height: 340px; border-radius: var(--r-lg); }
+  .case-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tag { font-family: var(--font-display); font-weight: 500; font-size: 12px; padding: 5px 11px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+  .case h2 { font-size: clamp(26px, 3.4vw, 38px); margin-bottom: 14px; }
+  .case > div > p { color: var(--muted); font-size: 16.5px; }
+  .case-results { display: flex; gap: 32px; margin-top: 28px; }
+  .case-results .cr b { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.02em; display: block; }
+  .case-results .cr small { color: var(--muted); font-size: 13.5px; }
+  .case .btn { margin-top: 30px; }
+
+  .work-cta { padding: 30px 0 100px; }
+  .work-cta-card { background: linear-gradient(135deg, var(--blue), var(--violet)); border-radius: var(--r-xl); padding: 60px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+  .work-cta-card::after { content:""; position:absolute; bottom:-140px; right:-80px; width:380px; height:380px; background:radial-gradient(circle, oklch(1 0 0 / 0.12), transparent 65%); }
+  .work-cta-card h2 { color: #fff; font-size: clamp(30px, 4vw, 46px); position: relative; z-index: 1; }
+  .work-cta-card p { color: oklch(0.94 0.03 252); font-size: 18px; max-width: 480px; margin: 18px auto 30px; position: relative; z-index: 1; }
+  .work-cta-card .btn { position: relative; z-index: 1; background: #fff; color: var(--blue-deep); }
+  .work-cta-card .btn:hover { background: var(--bg); }
+
+  @media (max-width: 880px) {
+    .case { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+    .case:nth-child(even) .case-media { order: 0; }
+    .case-media .ph { height: 240px; }
+    .work-cta-card { padding: 40px 26px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark"><span>A</span></span>AlexMedia</a>
+    <div class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="work.html">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#testimonials">Reviews</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="pricing.html" class="btn btn-ghost">See pricing</a>
+      <a href="index.html#contact" class="btn btn-primary">Start a project</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="work.html">Work</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="index.html#testimonials">Reviews</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="index.html#contact" class="btn btn-primary">Start a project</a>
+</div>
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="pill" data-reveal><span class="dot"></span>Our work</span>
+    <h1 data-reveal data-delay="1">Real local businesses.<br>Real growth.</h1>
+    <p data-reveal data-delay="2">Every project starts with a small business owner who wanted more customers. Here's what happened next.</p>
+    <div class="hero-stats" data-reveal data-delay="3">
+      <div class="hs"><b style="color:var(--blue);">120+</b><small>sites launched</small></div>
+      <div class="hs"><b style="color:var(--coral);">4.9★</b><small>client rating</small></div>
+      <div class="hs"><b style="color:oklch(0.5 0.14 150);">2.3×</b><small>avg. lead growth</small></div>
+      <div class="hs"><b style="color:var(--violet);">3 wk</b><small>avg. delivery</small></div>
+    </div>
+  </div>
+</header>
+
+<section class="cases">
+  <div class="wrap">
+
+    <article class="case" data-reveal>
+      <div class="case-media"><div class="ph"><span class="ph-label">Brewhouse Café — full site</span></div></div>
+      <div>
+        <div class="case-tags"><span class="tag">Website</span><span class="tag">Online ordering</span><span class="tag">Local SEO</span></div>
+        <h2>Brewhouse Café</h2>
+        <p>The weekend lines were great for vibes, terrible for revenue. We built a warm, mouth-watering site with built-in pre-ordering, then optimized it to show up first for "coffee near me."</p>
+        <div class="case-results">
+          <div class="cr"><b style="color:var(--blue);">+142%</b><small>online orders</small></div>
+          <div class="cr"><b style="color:var(--blue);">#1</b><small>local "coffee" rank</small></div>
+          <div class="cr"><b style="color:var(--blue);">2.1s</b><small>load time</small></div>
+        </div>
+        <a href="index.html#contact" class="btn btn-ghost">Start a project like this <span class="arrow">↗</span></a>
+      </div>
+    </article>
+
+    <article class="case" data-reveal>
+      <div class="case-media"><div class="ph" style="background-color:var(--coral-soft);background-image:repeating-linear-gradient(135deg, oklch(0.72 0.16 25 / 0.1) 0 10px, transparent 10px 20px);"><span class="ph-label" style="color:var(--coral);border-color:oklch(0.72 0.16 25 / 0.4);">Sharp &amp; Co. — full site</span></div></div>
+      <div>
+        <div class="case-tags"><span class="tag">Website</span><span class="tag">Booking system</span><span class="tag">Google Ads</span></div>
+        <h2>Sharp &amp; Co. Barbers</h2>
+        <p>A booking-first redesign made it effortless to grab the next chair, while a tightly-targeted local ad campaign filled the quiet midweek slots that used to sit empty.</p>
+        <div class="case-results">
+          <div class="cr"><b style="color:var(--coral);">3.5×</b><small>weekly bookings</small></div>
+          <div class="cr"><b style="color:var(--coral);">−40%</b><small>no-shows</small></div>
+          <div class="cr"><b style="color:var(--coral);">4.2×</b><small>return on ad spend</small></div>
+        </div>
+        <a href="index.html#contact" class="btn btn-ghost">Start a project like this <span class="arrow">↗</span></a>
+      </div>
+    </article>
+
+    <article class="case" data-reveal>
+      <div class="case-media"><div class="ph" style="background-color:var(--lime-soft);background-image:repeating-linear-gradient(135deg, oklch(0.8 0.16 150 / 0.12) 0 10px, transparent 10px 20px);"><span class="ph-label" style="color:oklch(0.5 0.14 150);border-color:oklch(0.8 0.16 150 / 0.5);">GreenLeaf Spa — full site</span></div></div>
+      <div>
+        <div class="case-tags"><span class="tag">Website</span><span class="tag">Branding</span><span class="tag">Local SEO</span></div>
+        <h2>GreenLeaf Day Spa</h2>
+        <p>We rebranded around calm and built a serene, mobile-friendly site that makes booking a treatment feel like the first step of the massage. It now ranks #1 and books weeks ahead.</p>
+        <div class="case-results">
+          <div class="cr"><b style="color:oklch(0.5 0.14 150);">#1</b><small>"day spa" rank</small></div>
+          <div class="cr"><b style="color:oklch(0.5 0.14 150);">+96%</b><small>online bookings</small></div>
+          <div class="cr"><b style="color:oklch(0.5 0.14 150);">3 wk</b><small>booked ahead</small></div>
+        </div>
+        <a href="index.html#contact" class="btn btn-ghost">Start a project like this <span class="arrow">↗</span></a>
+      </div>
+    </article>
+
+    <article class="case" data-reveal>
+      <div class="case-media"><div class="ph" style="background-color:var(--violet-soft);background-image:repeating-linear-gradient(135deg, oklch(0.64 0.18 300 / 0.1) 0 10px, transparent 10px 20px);"><span class="ph-label" style="color:var(--violet);border-color:oklch(0.64 0.18 300 / 0.4);">PipeWorks — full site</span></div></div>
+      <div>
+        <div class="case-tags"><span class="tag">Website</span><span class="tag">Google Ads</span><span class="tag">Care plan</span></div>
+        <h2>PipeWorks Plumbing</h2>
+        <p>Emergencies don't wait, so we built a fast, click-to-call site that loads instantly on a phone at 2am — paired with always-on ads for the urgent searches that matter most.</p>
+        <div class="case-results">
+          <div class="cr"><b style="color:var(--violet);">+88%</b><small>qualified calls</small></div>
+          <div class="cr"><b style="color:var(--violet);">0.9s</b><small>mobile load</small></div>
+          <div class="cr"><b style="color:var(--violet);">24/7</b><small>lead capture</small></div>
+        </div>
+        <a href="index.html#contact" class="btn btn-ghost">Start a project like this <span class="arrow">↗</span></a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="work-cta">
+  <div class="wrap">
+    <div class="work-cta-card" data-reveal>
+      <h2>Your business could be next</h2>
+      <p>Let's build something that brings you more of the customers you want. The first call is free.</p>
+      <a href="index.html#contact" class="btn">Start your project <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo"><span class="logo-mark"><span>A</span></span>AlexMedia</a>
+        <p class="footer-blurb">Websites &amp; marketing for small businesses that want to look big and grow faster.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="Facebook">Fb</a>
+          <a href="#" aria-label="LinkedIn">In</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="index.html#services">Web design</a>
+        <a href="index.html#services">Local SEO</a>
+        <a href="index.html#services">Google &amp; social ads</a>
+        <a href="index.html#services">Branding</a>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <a href="work.html">Our work</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="index.html#testimonials">Reviews</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@alexmedia.studio">hello@alexmedia.studio</a>
+        <a href="tel:+15551234567">(555) 123-4567</a>
+        <a href="index.html#contact">Book a free call</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AlexMedia Studio. All rights reserved.</span>
+      <span>Made with care for small businesses ✦</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

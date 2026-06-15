@@ -1,317 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Media — Web Design & Marketing</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AlexMedia — Websites that make small businesses look big</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ============== HERO ============== */
+  .hero { padding: 64px 0 92px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; top: -180px; right: -140px; width: 560px; height: 560px;
+    background: radial-gradient(circle, oklch(0.6 0.19 252 / 0.16), transparent 65%); z-index: 0;
+  }
+  .hero::after {
+    content: ""; position: absolute; bottom: -200px; left: -120px; width: 480px; height: 480px;
+    background: radial-gradient(circle, oklch(0.64 0.18 300 / 0.12), transparent 65%); z-index: 0;
+  }
+  .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(40px, 6vw, 74px); font-weight: 700; }
+  .hero h1 .hl { position: relative; color: var(--blue); white-space: nowrap; }
+  .hero h1 .hl::after {
+    content: ""; position: absolute; left: -2px; right: -2px; bottom: 6px; height: 14px; z-index: -1;
+    background: var(--yellow); border-radius: 4px; transform: rotate(-1.2deg);
+  }
+  .hero-sub { font-size: 19px; color: var(--muted); margin-top: 26px; max-width: 520px; }
+  .hero-cta { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-trust { display: flex; align-items: center; gap: 14px; margin-top: 34px; }
+  .avatars { display: flex; }
+  .avatars span {
+    width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid var(--bg); margin-left: -12px;
+    display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; font-size: 14px; color: #fff;
+  }
+  .avatars span:first-child { margin-left: 0; }
+  .hero-trust small { color: var(--muted); font-size: 14px; line-height: 1.4; }
+  .hero-trust strong { color: var(--ink); }
+
+  /* hero visual collage */
+  .hero-art { position: relative; height: 480px; }
+  .float-card {
+    position: absolute; background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-md); box-shadow: var(--shadow-lg); padding: 18px;
+  }
+  .browser { inset: 0 0 60px 0; width: 100%; height: 380px; padding: 0; overflow: hidden; }
+  .browser-bar { height: 42px; display: flex; align-items: center; gap: 7px; padding: 0 16px; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .browser-bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+  .browser-url { margin-left: 12px; flex: 1; height: 22px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 11px; color: var(--muted); display: flex; align-items: center; padding: 0 12px; font-family: var(--font-display); }
+  .browser-body { height: calc(380px - 42px); padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .bb-hero { flex: 1; border-radius: 14px; }
+  .bb-row { display: flex; gap: 12px; }
+  .bb-row .ph { flex: 1; height: 64px; border-radius: 12px; }
+  .stat-card { right: -18px; bottom: 0; width: 215px; transform: rotate(2.5deg); z-index: 3; }
+  .stat-card .big { font-family: var(--font-display); font-weight: 700; font-size: 34px; color: var(--lime); letter-spacing: -0.02em; }
+  .stat-card small { color: var(--muted); font-size: 13px; }
+  .ping-card { left: -26px; top: 30px; display: flex; align-items: center; gap: 10px; transform: rotate(-4deg); z-index: 3; padding: 12px 16px; }
+  .ping-dot { width: 30px; height: 30px; border-radius: 9px; background: var(--coral-soft); display: grid; place-items: center; color: var(--coral); font-weight: 700; font-family: var(--font-display); }
+  .ping-card b { font-family: var(--font-display); font-size: 14px; }
+  .ping-card small { color: var(--muted); font-size: 12px; display: block; }
+
+  /* ============== LOGO MARQUEE ============== */
+  .marquee-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 26px 0; overflow: hidden; background: var(--surface); }
+  .marquee-label { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 18px; letter-spacing: 0.04em; }
+  .marquee { display: flex; gap: 64px; width: max-content; animation: scroll 28s linear infinite; }
+  .marquee span { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: var(--muted); opacity: 0.7; white-space: nowrap; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee { animation: none; flex-wrap: wrap; justify-content: center; } }
+
+  /* ============== SERVICES ============== */
+  .services { padding: 100px 0; }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+  .svc-card { padding: 32px 28px 30px; }
+  .svc-card.feature { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; background: linear-gradient(135deg, var(--blue), var(--blue-deep)); border: none; color: #fff; }
+  .svc-card.feature:hover { box-shadow: 0 30px 60px oklch(0.6 0.19 252 / 0.35); }
+  .svc-card.feature .svc-icon { background: oklch(1 0 0 / 0.18); color: #fff; }
+  .svc-card.feature h3 { color: #fff; font-size: 27px; }
+  .svc-card.feature p { color: oklch(0.92 0.03 252); }
+  .svc-card.feature .ph { height: 150px; border-radius: 16px; background-color: oklch(1 0 0 / 0.12); }
+  .svc-card.feature .ph .ph-label { background: oklch(1 0 0 / 0.2); color: #fff; border-color: oklch(1 0 0 / 0.4); }
+  .svc-card.feature a { color: #fff; }
+  .svc-icon { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; font-size: 23px; margin-bottom: 20px; }
+  .svc-card h3 { font-size: 21px; margin-bottom: 10px; }
+  .svc-card p { color: var(--muted); font-size: 15.5px; }
+  .svc-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--blue-deep); }
+  .svc-link .arrow { transition: transform 0.25s var(--ease); }
+  .svc-card:hover .svc-link .arrow { transform: translateX(4px); }
+  .i-blue { background: var(--blue-soft); color: var(--blue); }
+  .i-coral { background: var(--coral-soft); color: var(--coral); }
+  .i-lime { background: var(--lime-soft); color: oklch(0.55 0.14 150); }
+  .i-violet { background: var(--violet-soft); color: var(--violet); }
+  .i-yellow { background: var(--yellow-soft); color: oklch(0.6 0.13 80); }
+
+  /* ============== PROCESS ============== */
+  .process { padding: 90px 0; background: var(--surface); border-block: 1px solid var(--line); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 54px; }
+  .step { position: relative; padding-top: 30px; }
+  .step-num { font-family: var(--font-display); font-weight: 700; font-size: 15px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: #fff; margin-bottom: 18px; }
+  .step h4 { font-size: 19px; margin-bottom: 9px; }
+  .step p { color: var(--muted); font-size: 15px; }
+  .step::before { content: ""; position: absolute; top: 49px; left: 50px; right: -10px; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px); }
+  .step:last-child::before { display: none; }
+
+  /* ============== WORK ============== */
+  .work { padding: 100px 0; }
+  .work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 52px; }
+  .work-card { overflow: hidden; cursor: pointer; }
+  .work-card .ph { height: 270px; }
+  .work-card .wc-body { padding: 24px 26px 28px; }
+  .work-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tag { font-family: var(--font-display); font-weight: 500; font-size: 12px; padding: 5px 11px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+  .work-card h3 { font-size: 23px; margin-bottom: 8px; }
+  .work-card p { color: var(--muted); font-size: 15px; }
+  .wc-result { display: flex; align-items: baseline; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
+  .wc-result b { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -0.02em; }
+  .wc-result small { color: var(--muted); font-size: 14px; }
+
+  /* ============== PRICING ============== */
+  .pricing { padding: 100px 0; background: var(--surface); border-block: 1px solid var(--line); }
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; align-items: start; }
+  .price-card { padding: 34px 30px 36px; position: relative; }
+  .price-card.pop { border: 2px solid var(--blue); box-shadow: var(--shadow-md); transform: scale(1.02); }
+  .price-badge { position: absolute; top: -13px; left: 30px; background: var(--blue); color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.04em; padding: 6px 14px; border-radius: 999px; }
+  .price-card h3 { font-size: 21px; margin-bottom: 6px; }
+  .price-card .ptag { color: var(--muted); font-size: 14.5px; min-height: 42px; }
+  .price-amt { display: flex; align-items: baseline; gap: 6px; margin: 18px 0 6px; }
+  .price-amt .cur { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: var(--muted); }
+  .price-amt .num { font-family: var(--font-display); font-weight: 700; font-size: 46px; letter-spacing: -0.03em; }
+  .price-amt .per { color: var(--muted); font-size: 14px; }
+  .price-from { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .feat-list { list-style: none; padding: 0; margin: 26px 0; display: flex; flex-direction: column; gap: 13px; }
+  .feat-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 15px; color: var(--ink); }
+  .feat-list li .ck { flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: var(--lime-soft); color: oklch(0.5 0.14 150); display: grid; place-items: center; font-size: 12px; font-weight: 700; margin-top: 1px; }
+  .price-card .btn { width: 100%; justify-content: center; }
+
+  /* ============== TESTIMONIALS ============== */
+  .testi { padding: 100px 0; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 54px; }
+  .testi-card { padding: 32px 30px; display: flex; flex-direction: column; }
+  .stars { color: var(--yellow); font-size: 16px; letter-spacing: 2px; margin-bottom: 18px; }
+  .testi-card blockquote { margin: 0; font-size: 17px; line-height: 1.6; color: var(--ink); flex: 1; }
+  .testi-author { display: flex; align-items: center; gap: 13px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line-soft); }
+  .testi-author .av { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; color: #fff; font-size: 16px; }
+  .testi-author b { font-family: var(--font-display); font-size: 15px; display: block; }
+  .testi-author small { color: var(--muted); font-size: 13px; }
+
+  /* ============== CTA + CONTACT ============== */
+  .contact { padding: 100px 0 110px; }
+  .contact-card { background: var(--ink); border-radius: var(--r-xl); padding: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; position: relative; overflow: hidden; }
+  .contact-card::before { content: ""; position: absolute; top: -120px; right: -80px; width: 380px; height: 380px; background: radial-gradient(circle, oklch(0.6 0.19 252 / 0.4), transparent 65%); }
+  .contact-info { position: relative; z-index: 1; color: #fff; }
+  .contact-info .eyebrow { color: var(--lime); }
+  .contact-info h2 { color: #fff; font-size: clamp(30px, 4vw, 44px); margin-top: 16px; }
+  .contact-info p { color: oklch(0.82 0.02 250); font-size: 17px; margin-top: 18px; max-width: 380px; }
+  .contact-points { list-style: none; padding: 0; margin: 34px 0 0; display: flex; flex-direction: column; gap: 16px; }
+  .contact-points li { display: flex; align-items: center; gap: 13px; color: oklch(0.88 0.02 250); font-size: 15.5px; }
+  .contact-points .ci { width: 40px; height: 40px; border-radius: 12px; background: oklch(0.4 0.03 255 / 0.5); display: grid; place-items: center; color: var(--blue); font-weight: 700; }
+  .form { position: relative; z-index: 1; background: var(--surface); border-radius: var(--r-lg); padding: 34px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-family: var(--font-display); font-weight: 500; font-size: 13px; margin-bottom: 7px; color: var(--ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 13px 15px; border-radius: var(--r-sm); border: 1.5px solid var(--line);
+    font-family: var(--font-body); font-size: 15px; color: var(--ink); background: var(--bg); transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px var(--blue-soft); background: var(--surface); }
+  .field textarea { resize: vertical; min-height: 92px; }
+  .field.err input, .field.err select, .field.err textarea { border-color: var(--coral); }
+  .field .msg { font-size: 12px; color: var(--coral); margin-top: 6px; display: none; }
+  .field.err .msg { display: block; }
+  .form .btn { width: 100%; justify-content: center; margin-top: 6px; }
+  .form-success { text-align: center; padding: 30px 10px; display: none; }
+  .form-success.show { display: block; }
+  .form-success .big-ck { width: 64px; height: 64px; border-radius: 50%; background: var(--lime-soft); color: oklch(0.5 0.14 150); display: grid; place-items: center; font-size: 30px; margin: 0 auto 18px; }
+  .form-success h3 { font-size: 24px; margin-bottom: 10px; }
+  .form-success p { color: var(--muted); }
+
+  @media (max-width: 980px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-art { height: 420px; max-width: 480px; }
+    .svc-grid, .price-grid, .testi-grid, .steps { grid-template-columns: 1fr 1fr; }
+    .svc-card.feature { grid-column: span 2; }
+    .work-grid { grid-template-columns: 1fr; }
+    .contact-card { grid-template-columns: 1fr; padding: 44px; gap: 40px; }
+    .step::before { display: none; }
+  }
+  @media (max-width: 620px) {
+    .svc-grid, .price-grid, .testi-grid, .steps, .form-row { grid-template-columns: 1fr; }
+    .svc-card.feature { grid-column: span 1; grid-template-columns: 1fr; }
+    .price-card.pop { transform: none; }
+    .contact-card { padding: 30px 24px; }
+    .form { padding: 24px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#" class="logo">Alex<span>Media</span></a>
-      <nav>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="btn-nav">Get in touch</a>
-      </nav>
+<!-- ============== NAV ============== -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark"><span>A</span></span>AlexMedia</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="work.html">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
     </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <span class="badge">Web Design &amp; Digital Marketing</span>
-      <h1>We build websites that <em>work</em> — and marketing that <em>converts</em>.</h1>
-      <p class="hero-sub">From sleek, fast websites to data-driven marketing campaigns, Alex Media helps businesses grow their online presence and turn visitors into loyal customers.</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn-primary">Start a project</a>
-        <a href="#work" class="btn-ghost">See our work</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num">120+</span><span class="stat-label">Sites launched</span></div>
-        <div class="stat"><span class="stat-num">3×</span><span class="stat-label">Avg. traffic increase</span></div>
-        <div class="stat"><span class="stat-num">98%</span><span class="stat-label">Client satisfaction</span></div>
-      </div>
+    <div class="nav-cta">
+      <a href="work.html" class="btn btn-ghost">See our work</a>
+      <a href="#contact" class="btn btn-primary">Start a project</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
-  </section>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="work.html">Work</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="#testimonials">Reviews</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Start a project</a>
+</div>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="container">
-      <span class="section-tag">What we do</span>
-      <h2>Services built for growth</h2>
-      <p class="section-sub">Everything you need to establish and scale your online presence — under one roof.</p>
-      <div class="services-grid">
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <h3>Website Design &amp; Development</h3>
-          <p>Custom, responsive websites built for speed, accessibility, and conversion. We handle everything from wireframes to launch.</p>
-          <ul>
-            <li>Custom UI/UX design</li>
-            <li>Mobile-first development</li>
-            <li>CMS integration (WordPress, Webflow, custom)</li>
-            <li>Performance optimisation</li>
-          </ul>
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="pill" data-reveal><span class="dot"></span>Web design &amp; marketing studio</span>
+      <h1 data-reveal data-delay="1" style="margin-top:22px;">Websites that make small businesses look <span class="hl">big.</span></h1>
+      <p class="hero-sub" data-reveal data-delay="2">We design, build, and market fast, beautiful websites for local shops and growing brands — so you get found, get booked, and get paid.</p>
+      <div class="hero-cta" data-reveal data-delay="3">
+        <a href="#contact" class="btn btn-primary">Start your project <span class="arrow">↗</span></a>
+        <a href="work.html" class="btn btn-ghost">See the work</a>
+      </div>
+      <div class="hero-trust" data-reveal data-delay="4">
+        <div class="avatars">
+          <span style="background:var(--blue);">JM</span>
+          <span style="background:var(--coral);">RS</span>
+          <span style="background:var(--violet);">TK</span>
+          <span style="background:var(--lime);color:var(--ink);">+</span>
         </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          </div>
-          <h3>Search Engine Optimisation</h3>
-          <p>Rank higher, get found faster. Our SEO strategies are grounded in technical excellence and content that earns authority.</p>
-          <ul>
-            <li>Technical SEO audits</li>
-            <li>Keyword &amp; competitor research</li>
-            <li>On-page &amp; off-page optimisation</li>
-            <li>Monthly reporting</li>
-          </ul>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <h3>Paid Advertising</h3>
-          <p>ROI-focused Google and Meta ad campaigns. We write the copy, build the creatives, and optimise daily so your budget works harder.</p>
-          <ul>
-            <li>Google Search &amp; Display</li>
-            <li>Meta &amp; Instagram Ads</li>
-            <li>Retargeting campaigns</li>
-            <li>A/B testing &amp; creative refresh</li>
-          </ul>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Social Media Marketing</h3>
-          <p>Build an audience, grow engagement, and turn followers into customers with consistent, on-brand social content.</p>
-          <ul>
-            <li>Content calendar &amp; copywriting</li>
-            <li>Graphic design &amp; video edits</li>
-            <li>Community management</li>
-            <li>Performance analytics</li>
-          </ul>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <h3>Email Marketing</h3>
-          <p>Nurture leads and retain customers with automated email sequences, newsletters, and campaigns that feel personal at scale.</p>
-          <ul>
-            <li>Strategy &amp; segmentation</li>
-            <li>Template design</li>
-            <li>Automation &amp; drip sequences</li>
-            <li>Deliverability optimisation</li>
-          </ul>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Analytics &amp; Conversion Rate Optimisation</h3>
-          <p>Stop guessing. We set up robust tracking, analyse user behaviour, and run experiments to lift your conversion rate.</p>
-          <ul>
-            <li>GA4 &amp; Tag Manager setup</li>
-            <li>Heatmaps &amp; session recordings</li>
-            <li>Landing page testing</li>
-            <li>Funnel analysis</li>
-          </ul>
-        </div>
-
+        <small><strong>120+ local businesses</strong> launched &amp; growing<br>★★★★★ 4.9 average client rating</small>
       </div>
     </div>
-  </section>
 
-  <!-- PROCESS -->
-  <section class="process" id="work">
-    <div class="container">
-      <span class="section-tag">How we work</span>
-      <h2>A simple, transparent process</h2>
-      <p class="section-sub">No jargon. No nasty surprises. Just clear milestones and regular communication from day one.</p>
-      <div class="process-steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3>Discovery</h3>
-          <p>We learn your business, goals, and audience in a free strategy call. No commitment required.</p>
+    <div class="hero-art" data-reveal data-delay="2">
+      <div class="float-card browser">
+        <div class="browser-bar">
+          <i style="background:var(--coral);"></i><i style="background:var(--yellow);"></i><i style="background:var(--lime);"></i>
+          <div class="browser-url">yourbusiness.com</div>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3>Proposal</h3>
-          <p>You receive a detailed scope, timeline, and fixed-price quote within 48 hours.</p>
+        <div class="browser-body">
+          <div class="ph bb-hero"><span class="ph-label">hero section</span></div>
+          <div class="bb-row">
+            <div class="ph"><span class="ph-label">img</span></div>
+            <div class="ph"><span class="ph-label">img</span></div>
+            <div class="ph"><span class="ph-label">img</span></div>
+          </div>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3>Build &amp; Launch</h3>
-          <p>We design, develop, and test. You get regular previews and full sign-off before anything goes live.</p>
+      </div>
+      <div class="float-card stat-card">
+        <div class="big">+142%</div>
+        <small>more booking requests<br>in the first 90 days</small>
+      </div>
+      <div class="float-card ping-card">
+        <div class="ping-dot">↑</div>
+        <div><b>Page 1 on Google</b><small>"plumber near me"</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee-wrap">
+  <p class="marquee-label">Trusted by local favorites across cafés, salons, trades &amp; clinics</p>
+  <div class="marquee" id="marquee">
+    <span>☕ Brewhouse</span><span>✂ Sharp &amp; Co.</span><span>🔧 PipeWorks</span><span>🌿 GreenLeaf Spa</span><span>🦷 BrightSmile</span><span>🍕 Nonna's</span><span>🐾 Pawsome Vet</span><span>🏋 IronYard Gym</span>
+    <span>☕ Brewhouse</span><span>✂ Sharp &amp; Co.</span><span>🔧 PipeWorks</span><span>🌿 GreenLeaf Spa</span><span>🦷 BrightSmile</span><span>🍕 Nonna's</span><span>🐾 Pawsome Vet</span><span>🏋 IronYard Gym</span>
+  </div>
+</div>
+
+<!-- ============== SERVICES ============== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">What we do</span>
+      <h2>Everything your business needs to win online</h2>
+      <p>One studio for the whole journey — from a website that loads in a blink to the marketing that fills it with customers.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="card svc-card feature" data-reveal>
+        <div>
+          <div class="svc-icon">◐</div>
+          <h3>Website design &amp; development</h3>
+          <p>Custom, mobile-first websites built to load fast, rank well, and turn visitors into bookings. No clunky templates — just sites that feel made for you.</p>
+          <a href="work.html" class="svc-link" style="color:#fff;">See examples <span class="arrow">→</span></a>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <h3>Grow</h3>
-          <p>Ongoing marketing support, analytics reviews, and continuous improvements to compound your results.</p>
+        <div class="ph"><span class="ph-label">site mockup</span></div>
+      </div>
+      <div class="card svc-card" data-reveal data-delay="1">
+        <div class="svc-icon i-lime">⌕</div>
+        <h3>SEO &amp; local search</h3>
+        <p>Show up when neighbors search. We get you on the map — literally — for the terms that bring real customers.</p>
+        <a href="#contact" class="svc-link">Get found <span class="arrow">→</span></a>
+      </div>
+      <div class="card svc-card" data-reveal>
+        <div class="svc-icon i-coral">◎</div>
+        <h3>Google &amp; social ads</h3>
+        <p>Smart campaigns that stretch every dollar and put your business in front of ready-to-buy locals.</p>
+        <a href="#contact" class="svc-link">Run ads <span class="arrow">→</span></a>
+      </div>
+      <div class="card svc-card" data-reveal data-delay="1">
+        <div class="svc-icon i-violet">✦</div>
+        <h3>Branding &amp; identity</h3>
+        <p>Logos, colors, and a look that makes you memorable — so you stand out from the shop down the street.</p>
+        <a href="#contact" class="svc-link">Look the part <span class="arrow">→</span></a>
+      </div>
+      <div class="card svc-card" data-reveal data-delay="2">
+        <div class="svc-icon i-yellow">◷</div>
+        <h3>Care &amp; analytics</h3>
+        <p>We keep your site fast, secure, and improving — with plain-English reports on what's actually working.</p>
+        <a href="#contact" class="svc-link">Stay ahead <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROCESS ============== -->
+<section class="process">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">How it works</span>
+      <h2>From idea to launch in 4 simple steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <div class="step-num" style="background:var(--blue);">1</div>
+        <h4>Discover</h4>
+        <p>A friendly chat about your business, goals, and the customers you want more of.</p>
+      </div>
+      <div class="step" data-reveal data-delay="1">
+        <div class="step-num" style="background:var(--coral);">2</div>
+        <h4>Design</h4>
+        <p>We craft a look you'll love and map out every page before a single line of code.</p>
+      </div>
+      <div class="step" data-reveal data-delay="2">
+        <div class="step-num" style="background:var(--violet);">3</div>
+        <h4>Build &amp; launch</h4>
+        <p>We develop, test on every device, and flip the switch — usually in 2–4 weeks.</p>
+      </div>
+      <div class="step" data-reveal data-delay="3">
+        <div class="step-num" style="background:oklch(0.55 0.14 150);">4</div>
+        <h4>Grow</h4>
+        <p>Marketing, tweaks, and reporting that keep new customers rolling in long after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WORK ============== -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="work-head">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow">Recent work</span>
+        <h2>Small businesses, big results</h2>
+      </div>
+      <a href="work.html" class="btn btn-ghost" data-reveal data-delay="1">View all projects <span class="arrow">↗</span></a>
+    </div>
+    <div class="work-grid">
+      <a href="work.html" class="card work-card" data-reveal>
+        <div class="ph" style="background-color:var(--blue-soft);"><span class="ph-label">Brewhouse Café — site shot</span></div>
+        <div class="wc-body">
+          <div class="work-tags"><span class="tag">Website</span><span class="tag">Local SEO</span><span class="tag">Branding</span></div>
+          <h3>Brewhouse Café</h3>
+          <p>A warm new site plus online ordering that turned weekend lines into pre-orders.</p>
+          <div class="wc-result"><b style="color:var(--blue);">+142%</b><small>online orders in 90 days</small></div>
+        </div>
+      </a>
+      <a href="work.html" class="card work-card" data-reveal data-delay="1">
+        <div class="ph" style="background-color:var(--coral-soft);background-image:repeating-linear-gradient(135deg, oklch(0.72 0.16 25 / 0.1) 0 10px, transparent 10px 20px);"><span class="ph-label" style="color:var(--coral);border-color:oklch(0.72 0.16 25 / 0.4);">Sharp &amp; Co. — site shot</span></div>
+        <div class="wc-body">
+          <div class="work-tags"><span class="tag">Website</span><span class="tag">Booking</span><span class="tag">Ads</span></div>
+          <h3>Sharp &amp; Co. Barbers</h3>
+          <p>Slick booking-first website with a campaign that kept every chair full.</p>
+          <div class="wc-result"><b style="color:var(--coral);">3.5×</b><small>online bookings per week</small></div>
+        </div>
+      </a>
+      <a href="work.html" class="card work-card" data-reveal>
+        <div class="ph" style="background-color:var(--lime-soft);background-image:repeating-linear-gradient(135deg, oklch(0.8 0.16 150 / 0.12) 0 10px, transparent 10px 20px);"><span class="ph-label" style="color:oklch(0.5 0.14 150);border-color:oklch(0.8 0.16 150 / 0.5);">GreenLeaf Spa — site shot</span></div>
+        <div class="wc-body">
+          <div class="work-tags"><span class="tag">Website</span><span class="tag">Local SEO</span></div>
+          <h3>GreenLeaf Day Spa</h3>
+          <p>A calming redesign that ranks #1 locally and books out weeks ahead.</p>
+          <div class="wc-result"><b style="color:oklch(0.5 0.14 150);">#1</b><small>on Google for "day spa"</small></div>
+        </div>
+      </a>
+      <a href="work.html" class="card work-card" data-reveal data-delay="1">
+        <div class="ph" style="background-color:var(--violet-soft);background-image:repeating-linear-gradient(135deg, oklch(0.64 0.18 300 / 0.1) 0 10px, transparent 10px 20px);"><span class="ph-label" style="color:var(--violet);border-color:oklch(0.64 0.18 300 / 0.4);">PipeWorks — full site</span></div>
+        <div class="wc-body">
+          <div class="work-tags"><span class="tag">Website</span><span class="tag">Google Ads</span><span class="tag">Care plan</span></div>
+          <h3>PipeWorks Plumbing</h3>
+          <p>An emergency-ready site that turns 2am searches into morning callouts.</p>
+          <div class="wc-result"><b style="color:var(--violet);">+88%</b><small>qualified call volume</small></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRICING ============== -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Simple pricing</span>
+      <h2>Packages that fit a small-business budget</h2>
+      <p>Transparent, fixed-price projects. No surprise invoices, no jargon — just a clear plan to get you growing.</p>
+    </div>
+    <div class="price-grid">
+      <div class="card price-card" data-reveal>
+        <h3>Launch</h3>
+        <p class="ptag">Get online fast with a polished one-pager that converts.</p>
+        <div class="price-amt"><span class="cur">$</span><span class="num">1,200</span></div>
+        <p class="price-from">one-time · ~2 week delivery</p>
+        <ul class="feat-list">
+          <li><span class="ck">✓</span> 1-page custom website</li>
+          <li><span class="ck">✓</span> Mobile-first &amp; fast</li>
+          <li><span class="ck">✓</span> Contact &amp; click-to-call</li>
+          <li><span class="ck">✓</span> Google Business setup</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choose Launch</a>
+      </div>
+      <div class="card price-card pop" data-reveal data-delay="1">
+        <span class="price-badge">Most popular</span>
+        <h3>Grow</h3>
+        <p class="ptag">A full website plus the SEO foundation to get you found.</p>
+        <div class="price-amt"><span class="cur">$</span><span class="num">3,500</span></div>
+        <p class="price-from">one-time · ~4 week delivery</p>
+        <ul class="feat-list">
+          <li><span class="ck">✓</span> Up to 6 custom pages</li>
+          <li><span class="ck">✓</span> Local SEO &amp; on-page setup</li>
+          <li><span class="ck">✓</span> Booking or online ordering</li>
+          <li><span class="ck">✓</span> Brand refresh &amp; copywriting</li>
+          <li><span class="ck">✓</span> 30 days post-launch support</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Choose Grow</a>
+      </div>
+      <div class="card price-card" data-reveal data-delay="2">
+        <h3>Scale</h3>
+        <p class="ptag">Website plus done-for-you marketing, month after month.</p>
+        <div class="price-amt"><span class="cur">$</span><span class="num">900</span><span class="per">/mo</span></div>
+        <p class="price-from">+ build · cancel anytime</p>
+        <ul class="feat-list">
+          <li><span class="ck">✓</span> Everything in Grow</li>
+          <li><span class="ck">✓</span> Managed Google &amp; social ads</li>
+          <li><span class="ck">✓</span> Ongoing SEO &amp; content</li>
+          <li><span class="ck">✓</span> Monthly reporting call</li>
+          <li><span class="ck">✓</span> Priority care &amp; updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choose Scale</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;color:var(--muted);font-size:15px;" data-reveal>Not sure which fits? <a href="#contact" style="color:var(--blue-deep);font-weight:600;">Get a free recommendation →</a></p>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section class="testi" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Kind words</span>
+      <h2>Owners who'd send their friends</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="card testi-card" data-reveal>
+        <div class="stars">★★★★★</div>
+        <blockquote>"Our old site looked like it was from 2009. AlexMedia gave us something we're genuinely proud to share — and the phone hasn't stopped ringing since."</blockquote>
+        <div class="testi-author">
+          <div class="av" style="background:var(--blue);">JM</div>
+          <div><b>Jenna Morales</b><small>Owner, Brewhouse Café</small></div>
+        </div>
+      </div>
+      <div class="card testi-card" data-reveal data-delay="1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"They actually understood my business, not just the website. Bookings are way up and I finally show up when people search nearby."</blockquote>
+        <div class="testi-author">
+          <div class="av" style="background:var(--coral);">RS</div>
+          <div><b>Ryan Sharp</b><small>Sharp &amp; Co. Barbers</small></div>
+        </div>
+      </div>
+      <div class="card testi-card" data-reveal data-delay="2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Fast, friendly, and no confusing tech-speak. The monthly reports are so clear I always know exactly where my marketing money goes."</blockquote>
+        <div class="testi-author">
+          <div class="av" style="background:var(--violet);">TK</div>
+          <div><b>Tara Kelly</b><small>GreenLeaf Day Spa</small></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <div class="container">
-      <span class="section-tag">Client stories</span>
-      <h2>What our clients say</h2>
-      <div class="testimonials-grid">
-
-        <div class="testimonial-card">
-          <p class="quote">"Alex Media rebuilt our website and ran our Google Ads for three months. Organic traffic tripled and our cost-per-lead dropped by 40%. Genuinely impressed."</p>
-          <div class="testimonial-author">
-            <div class="avatar">SC</div>
-            <div>
-              <strong>Sarah Chen</strong>
-              <span>Founder, Brightleaf Wellness</span>
+<!-- ============== CONTACT ============== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card" data-reveal>
+      <div class="contact-info">
+        <span class="eyebrow">Let's talk</span>
+        <h2>Tell us about your business</h2>
+        <p>Free 20-minute call, no pressure. We'll review your current site and share two or three things you could improve right away — yours to keep either way.</p>
+        <ul class="contact-points">
+          <li><span class="ci">✦</span> Reply within one business day</li>
+          <li><span class="ci">◷</span> Free site &amp; marketing audit</li>
+          <li><span class="ci">◎</span> Fixed quotes, no surprises</li>
+        </ul>
+      </div>
+      <form class="form" id="contactForm" novalidate>
+        <div class="form-fields" id="formFields">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Doe" />
+              <div class="msg">Please enter your name.</div>
+            </div>
+            <div class="field">
+              <label for="business">Business name</label>
+              <input type="text" id="business" name="business" placeholder="Jane's Bakery" />
+              <div class="msg">Please enter your business.</div>
             </div>
           </div>
-        </div>
-
-        <div class="testimonial-card">
-          <p class="quote">"The team understood our brand immediately. Our new site launched on time, on budget, and looks better than anything I could have imagined. Highly recommend."</p>
-          <div class="testimonial-author">
-            <div class="avatar">JM</div>
-            <div>
-              <strong>James Morrow</strong>
-              <span>CEO, Morrow Interiors</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <p class="quote">"We'd tried two other agencies before Alex Media. Night and day difference. They're proactive, transparent, and the results speak for themselves — revenue up 65% YoY."</p>
-          <div class="testimonial-author">
-            <div class="avatar">RO</div>
-            <div>
-              <strong>Rachel Okafor</strong>
-              <span>Marketing Director, PeakFit Studio</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container about-inner">
-      <div class="about-text">
-        <span class="section-tag">About us</span>
-        <h2>Small agency. Big results.</h2>
-        <p>Alex Media is an independent web design and digital marketing studio. We work with small businesses, startups, and growing brands who want a genuine partner — not just a vendor.</p>
-        <p>We keep our client roster intentionally small so every project gets our full attention. When you work with us, you're working with the people who actually do the work.</p>
-        <div class="about-values">
-          <div class="value"><span class="value-icon">✓</span> Honest pricing, no lock-in contracts</div>
-          <div class="value"><span class="value-icon">✓</span> Direct access to your project lead</div>
-          <div class="value"><span class="value-icon">✓</span> Results you can measure</div>
-          <div class="value"><span class="value-icon">✓</span> Work delivered on time</div>
-        </div>
-      </div>
-      <div class="about-image">
-        <div class="about-card">
-          <div class="about-card-stat">5+ years</div>
-          <div class="about-card-label">in business</div>
-          <hr />
-          <div class="about-card-stat">120+</div>
-          <div class="about-card-label">projects delivered</div>
-          <hr />
-          <div class="about-card-stat">15+</div>
-          <div class="about-card-label">industries served</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="container contact-inner">
-      <div class="contact-text">
-        <span class="section-tag">Get in touch</span>
-        <h2>Ready to grow?</h2>
-        <p>Tell us a bit about your project and we'll be in touch within one business day with a free consultation.</p>
-        <div class="contact-details">
-          <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>hello@alexmedia.co</span>
-          </div>
-          <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.81 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>+44 20 7946 0123</span>
-          </div>
-        </div>
-      </div>
-
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
+          <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="you@company.com" required />
+            <input type="email" id="email" name="email" placeholder="jane@bakery.com" />
+            <div class="msg">Please enter a valid email.</div>
           </div>
+          <div class="field">
+            <label for="service">What do you need?</label>
+            <select id="service" name="service">
+              <option value="">Choose a service…</option>
+              <option>New website</option>
+              <option>Website redesign</option>
+              <option>SEO &amp; local search</option>
+              <option>Google / social ads</option>
+              <option>Branding &amp; identity</option>
+              <option>Ongoing marketing</option>
+              <option>Not sure yet</option>
+            </select>
+            <div class="msg">Please pick an option.</div>
+          </div>
+          <div class="field">
+            <label for="message">Tell us a bit more</label>
+            <textarea id="message" name="message" placeholder="What are you hoping to achieve?"></textarea>
+            <div class="msg">Please add a short message.</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Send &amp; get my free audit <span class="arrow">↗</span></button>
         </div>
-        <div class="form-group">
-          <label for="service">Service you're interested in</label>
-          <select id="service">
-            <option value="">Select a service…</option>
-            <option>Website Design &amp; Development</option>
-            <option>SEO</option>
-            <option>Paid Advertising</option>
-            <option>Social Media Marketing</option>
-            <option>Email Marketing</option>
-            <option>Analytics &amp; CRO</option>
-            <option>Not sure yet</option>
-          </select>
+        <div class="form-success" id="formSuccess">
+          <div class="big-ck">✓</div>
+          <h3>Thanks — we're on it!</h3>
+          <p>We'll be in touch within one business day with your free audit.</p>
         </div>
-        <div class="form-group">
-          <label for="message">Tell us about your project</label>
-          <textarea id="message" rows="4" placeholder="What are you trying to achieve?"></textarea>
-        </div>
-        <button type="submit" class="btn-primary">Send message</button>
-        <p class="form-note" id="form-msg"></p>
       </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span class="logo">Alex<span>Media</span></span>
-      <p>© 2025 Alex Media. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo"><span class="logo-mark"><span>A</span></span>AlexMedia</a>
+        <p class="footer-blurb">Websites &amp; marketing for small businesses that want to look big and grow faster.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="Facebook">Fb</a>
+          <a href="#" aria-label="LinkedIn">In</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Web design</a>
+        <a href="#services">Local SEO</a>
+        <a href="#services">Google &amp; social ads</a>
+        <a href="#services">Branding</a>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <a href="work.html">Our work</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="#testimonials">Reviews</a>
         <a href="#contact">Contact</a>
       </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@alexmedia.studio">hello@alexmedia.studio</a>
+        <a href="tel:+15551234567">(555) 123-4567</a>
+        <a href="#contact">Book a free call</a>
+      </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <span>© 2026 AlexMedia Studio. All rights reserved.</span>
+      <span>Made with care for small businesses ✦</span>
+    </div>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
